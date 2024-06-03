@@ -29,7 +29,7 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: "https://attendance-app-frontend-three.vercel.app",
   })
 );
 app.use(express.urlencoded({ extended: true }));
