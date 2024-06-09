@@ -31,10 +31,8 @@ app.use(
   cors({
     credentials: true,
     origin: "https://attendance-app-frontend-three.vercel.app",
-<<<<<<< HEAD
+
     // origin: "http://localhost:5173",
-=======
->>>>>>> b1443b336c804c8e8e6c9ab6edee5a4f24aa0979
   })
 );
 app.use(express.urlencoded({ extended: true }));
