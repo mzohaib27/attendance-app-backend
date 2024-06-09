@@ -30,7 +30,7 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: "https://attendance-app-frontend-three.vercel.app",
+    origin: "https://psgusersystem.vercel.app",
 
     // origin: "http://localhost:5173",
   })
