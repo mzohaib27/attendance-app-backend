@@ -36,10 +36,12 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await userModel.findOne({ email });
+  // console.log(user);
   if (!user) {
     return res.status(401).json({ success: false, message: "User Not Found" });
   }
   const validPassword = await bcrypt.compare(password, user.password);
+  console.log(password);
   if (!validPassword) {
     return res
       .status(400)
@@ -52,7 +54,7 @@ export const login = async (req, res) => {
     secure: false,
     maxAge: 3600000,
   });
-  const { password: _, ...userinfo } = user._doc;
+  const userinfo = { ...user._doc, password: password };
   res.status(200).json({
     success: true,
     message: "Log in successfully...  ",
@@ -90,4 +92,39 @@ export const getRecords = async (req, res) => {
 };
 
 // User Updating Profile Image
-export const updatingImage = async (req, res) => {};
+export const updatingUser = async (req, res) => {
+  const { userId } = req.params;
+  console.log(userId);
+  const { profileimage, name, email, password } = req.body;
+  console.log(
+    `Name is ${name} , Email is : ${email} , Password is : ${password}`
+  );
+  const user = await userModel.findById(userId);
+  if (!user) {
+    return res.status(401).json({
+      success: false,
+      message: "user not found",
+    });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 12);
+
+  const updatedUser = await userModel.findByIdAndUpdate(
+    userId,
+    {
+      profileimage: profileimage,
+      name: name,
+      email: email,
+      password: hashedPassword,
+    },
+    { new: true }
+  );
+
+  await updatedUser.save();
+  updatedUser.password = password;
+  res.status(200).json({
+    success: true,
+    message: "user updated successfully",
+    updatedUser,
+  });
+};

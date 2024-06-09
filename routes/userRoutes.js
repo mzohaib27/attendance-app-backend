@@ -3,6 +3,7 @@ import {
   getRecords,
   login,
   logout,
+  updatingUser,
   userRegister,
 } from "../controllers/userController.js";
 import {
@@ -18,6 +19,7 @@ userRouter.post("/register", upload.single("file"), userRegister);
 userRouter.post("/login", login);
 userRouter.post("/attendance", submitAttendance);
 userRouter.post("/logout", logout);
+userRouter.post("/updateuser/:userId", updatingUser);
 
 // Get Routes
 userRouter.get("/attendance/check/:userId", checkAttendanceStatus);

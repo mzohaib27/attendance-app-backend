@@ -16,6 +16,7 @@ dotenv.config();
 const app = express();
 
 // Database Connection
+console.log(process.env.DB_URL);
 mongoose
   .connect(process.env.DB_URL)
   .then(() => {
@@ -29,7 +30,8 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: "https://attendance-app-frontend-three.vercel.app",
+    // origin: "http://localhost:5173",
   })
 );
 app.use(express.urlencoded({ extended: true }));
@@ -38,6 +40,11 @@ app.use(express.json());
 const uploadDir = path.join(__dirname, "uploads");
 app.use("/uploads", express.static(uploadDir));
 // routes
+// app.use("/", (req, res) => {
+//   res.send({
+//     message: "Hello, This is the home route of the application",
+//   });
+// });
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 
