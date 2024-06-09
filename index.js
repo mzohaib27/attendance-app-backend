@@ -40,11 +40,11 @@ app.use(express.json());
 const uploadDir = path.join(__dirname, "uploads");
 app.use("/uploads", express.static(uploadDir));
 // routes
-// app.use("/", (req, res) => {
-//   res.send({
-//     message: "Hello, This is the home route of the application",
-//   });
-// });
+app.use("/", (req, res) => {
+  res.send({
+    message: "Hello, This is the home route of the application",
+  });
+});
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 
