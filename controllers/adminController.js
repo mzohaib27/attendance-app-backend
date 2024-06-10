@@ -11,10 +11,12 @@ export const getAllUsers = async (req, res) => {
       allUsers,
     });
   } catch (error) {
+if(!res.headersSent) {
     return res.status(500).json({
       success: false,
       message: `Error while fetching all users Error is  :  ${error}`,
     });
+} 
   }
 };
 
