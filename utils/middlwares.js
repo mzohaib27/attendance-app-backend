@@ -5,7 +5,7 @@ export const isAdmin = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
-      res.status(401).json({ message: "Not an Admin" });
+     return res.status(401).json({ message: "Not an Admin" });
     }
     const decoded = jwt.verify(token, process.env.JWT_SEC);
     // console.log(decoded);
@@ -24,6 +24,6 @@ export const isAdmin = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error in middleware" });
+  return res.status(500).json({ success: false, message: "Error in middleware" });
   }
 };
