@@ -11,7 +11,7 @@ export const getAllUsers = async (req, res) => {
       allUsers,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: `Error while fetching all users Error is  :  ${error}`,
     });
@@ -28,7 +28,7 @@ export const getUser = async (req, res) => {
       .limit(30);
     res.status(200).json({ user, attendanceRecord });
   } catch (error) {
-    res.status(500).json({
+   return res.status(500).json({
       success: false,
       message: `Error while getting users by admin Error is : ${error}`,
     });
@@ -55,7 +55,7 @@ export const deletUser = async (req, res) => {
       message: "User and his attendance record Deleted successfully...",
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: `Error while deleting user Error is : ${error}`,
     });
@@ -72,7 +72,7 @@ export const updateAttendance = async (req, res) => {
       message: "User Attendance updated successfully",
     });
   } catch (error) {
-    res.status(500).json({
+   return res.status(500).json({
       success: false,
       message: `Error while updating user attendance Error is : ${error}`,
     });
