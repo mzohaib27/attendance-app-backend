@@ -5,7 +5,7 @@ import attendanceModel from "../models/attendanceModel.js";
 export const getAllUsers = async (req, res) => {
   try {
     const allUsers = await userModel.find({});
-    res.status(200).json({
+   return res.status(200).json({
       success: true,
       message: "All users",
       allUsers,
@@ -26,7 +26,7 @@ export const getUser = async (req, res) => {
       .find({ userId })
       .sort({ date: -1 })
       .limit(30);
-    res.status(200).json({ user, attendanceRecord });
+   return res.status(200).json({ user, attendanceRecord });
   } catch (error) {
    return res.status(500).json({
       success: false,
@@ -50,7 +50,7 @@ export const deletUser = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "user not found" });
     }
-    res.status(200).json({
+   return res.status(200).json({
       success: true,
       message: "User and his attendance record Deleted successfully...",
     });
@@ -67,7 +67,7 @@ export const updateAttendance = async (req, res) => {
   try {
     const { userId, status, date } = req.body;
     await attendanceModel.updateOne({ userId, date }, { status });
-    res.status(200).json({
+   return res.status(200).json({
       success: true,
       message: "User Attendance updated successfully",
     });
