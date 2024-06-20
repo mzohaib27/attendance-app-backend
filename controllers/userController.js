@@ -85,7 +85,7 @@ export const getRecords = async (req, res) => {
       .sort({ date: -1 });
     res.status(200).json(attendanceRecords);
   } catch (error) {
-    res
+    return res
       .status(500)
       .json("Error while getting attendance records Error is : " + error);
   }
