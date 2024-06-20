@@ -30,9 +30,9 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    // origin: "https://psgusersystem.vercel.app",
+    origin: "https://psgusersystem.vercel.app",
 
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
   })
 );
 app.use(express.urlencoded({ extended: true }));
